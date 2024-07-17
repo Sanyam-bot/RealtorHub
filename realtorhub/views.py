@@ -1,17 +1,168 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .models import User
+from .models import User, Property
 from .forms import PropertyForm
 
 # Create your views here.
 @login_required(login_url='login')
 def index(request):
-    return render(request, 'realtorhub/index.html')
+
+    try:
+        properties = Property.objects.filter(user=request.user)
+    except ObjectDoesNotExist:
+        properties = None
+
+    return render(request, 'realtorhub/index.html', {
+        'properties': properties,
+    })
 
 
+@login_required(login_url='login')
 def add_property(request):
     if request.method == 'POST':
         # Get the form data
