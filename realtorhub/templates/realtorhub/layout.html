@@ -17,8 +17,23 @@
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href="{% url 'add_property' %}">Add</a>
+                {% if user.is_authenticated %}
+
+                    <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+
+                {% else %}
+
+                    <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                    <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+
+                {% endif %}
             </div>
             <span class="navbar-text ml-auto">
+                {% if user.is_authenticated %}
+
+                    Hello, {{ user }}
+
+                {% endif %}
             </span>
         </div>
     </nav>    
