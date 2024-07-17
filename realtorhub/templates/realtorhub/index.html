@@ -1,0 +1,41 @@
+{% extends 'realtorhub/layout.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block body %}
+
+    {% if properties is None %}
+
+        <h1 style="position: absolute; left: 50%; top: 50%;">EMPTY</h1>
+
+    {% else %}
+
+        <!-- bootstrap table -->
+        <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">City</th>
+                <th scope="col">Price</th>
+                <th scope="col">Sai</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for property in properties %}
+
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ property.property_name }}</td>
+                    <td>{{ property.city }}</td>
+                    <td>{{ property.price }}</td>
+                    <td>{{ property.sai }}</td>
+                </tr>
+
+            {% endfor %}
+        </tbody>
+        </table>        
+
+    {% endif %}
+    
+{% endblock %}
