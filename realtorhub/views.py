@@ -4,11 +4,32 @@ from django.db import IntegrityError
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import User
+from .forms import PropertyForm
 
 # Create your views here.
 @login_required(login_url='login')
 def index(request):
-    return HttpResponse('Hello, I am sanyam')
+    return render(request, 'realtorhub/index.html')
+
+
+def add_property(request):
+    if request.method == 'POST':
+        # Get the form data
+        form = PropertyForm(request.POST)
+
+        if form.is_valid(): # check if it's valid, i check for all hte validators defined in the model class
+            property_instance = form.save(commit=False) # To create an instnace but not commit, cause user field is still empty
+            property_instance.user = request.user
+            property_instance.save()
+            return redirect(index)
+
+    else:
+        # Creating the empty form, if method is GET
+        form  = PropertyForm()
+    
+    return render(request, 'realtorhub/add.html', {
+        'form': form,
+    })
 
 
 def login_view(request):

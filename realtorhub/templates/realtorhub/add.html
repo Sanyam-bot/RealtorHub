@@ -1,0 +1,14 @@
+{% extends 'realtorhub/layout.html' %}
+
+{% block title %} Add {% endblock %}
+
+{% block body %}
+
+    <h1>ADD</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register Property</button>
+    </form>
+
+{% endblock %}
