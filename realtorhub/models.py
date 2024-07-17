@@ -20,13 +20,13 @@ class User(AbstractUser):
 
 class Property(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_property')
-    name = models.CharField(max_length=100)
+    property_name = models.CharField(max_length=100)
     category = models.CharField(max_length=6, choices=ROLES)
     # address
     state = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
     address1 = models.CharField(max_length=500)
-    address1 = models.CharField(max_length=500, blank=True)
+    address2 = models.CharField(max_length=500, blank=True)
     nearby = models.CharField(max_length=200, blank=True)
     price = models.IntegerField()
     sai = models.IntegerField()
@@ -34,4 +34,4 @@ class Property(models.Model):
     size_unit = models.CharField(max_length=5, choices=SIZE_UNITS)
 
     def __str__(self):
-        return self.name
+        return self.property_name
