@@ -1,0 +1,16 @@
+body {
+    background-image: url('realtorhub/static/images/donkey.jpg');
+}
+
+/* static/realtorhub/style.css */
+.custom-table-bordered {
+    border: 5px solid black; /* Change this to your desired color */
+}
+
+.custom-table-bordered td, .custom-table-bordered th {
+    border: 3px solid black; /* Change this to your desired color */
+    font-size: 25px;
+    font-weight: 700;
+}
+
+

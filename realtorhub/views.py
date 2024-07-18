@@ -42,6 +42,19 @@ def add_property(request):
     })
 
 
+@login_required(login_url='login')
+def property(request, property_id):
+
+    try:
+        property = Property.objects.get(pk=property_id)
+    except ObjectDoesNotExist:
+        return render(request, 'realtorhub/error.html')
+    
+    return render(request, 'realtorhub/property.html', {
+        'property': property,
+    })
+
+
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']

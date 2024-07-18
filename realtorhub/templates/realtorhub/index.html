@@ -1,5 +1,11 @@
 {% extends 'realtorhub/layout.html' %}
 
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'realtorhub/style.css' %}">
+{% endblock %}
+
 {% block title %} Home {% endblock %}
 
 {% block body %}
@@ -11,30 +17,31 @@
     {% else %}
 
         <!-- bootstrap table -->
-        <table class="table table-striped">
-        <thead>
-            <tr>
+        <table class="table table-bordered custom-table-bordered">
+            <thead>
+              <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">City</th>
                 <th scope="col">Price</th>
                 <th scope="col">Sai</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for property in properties %}
+              </tr>
+            </thead>
+            <tbody>
+                {% for property in properties %}
 
-                <tr>
-                    <th scope="row">{{ forloop.counter }}</th>
-                    <td>{{ property.property_name }}</td>
-                    <td>{{ property.city }}</td>
-                    <td>{{ property.price }}</td>
-                    <td>{{ property.sai }}</td>
-                </tr>
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td><a href="{% url 'property' property_id=property.pk %}">{{ property.property_name }}</a></td>
+                        <td>{{ property.city }}</td>
+                        <td>{{ property.total_amount }}</td>
+                        <td>{{ property.sai }}</td>
+                    </tr>
 
-            {% endfor %}
-        </tbody>
-        </table>        
+                {% endfor %}
+            </tbody>
+          </table>
+   
 
     {% endif %}
     
