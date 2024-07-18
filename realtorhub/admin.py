@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 from .models import User, Property
 
 class PropertyAdmin(admin.ModelAdmin):
-    list_display = ['user', 'property_name', 'category', 'price', 'sai']
+    list_display = ['user', 'property_name', 'role', 'total_amount', 'sai']
 
 class AddressAdmin(admin.ModelAdmin):
     pass

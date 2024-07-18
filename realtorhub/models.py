@@ -21,14 +21,19 @@ class User(AbstractUser):
 class Property(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_property')
     property_name = models.CharField(max_length=100)
-    category = models.CharField(max_length=6, choices=ROLES)
+    role = models.CharField(max_length=6, choices=ROLES)
     # address
     state = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
     address1 = models.CharField(max_length=500)
     address2 = models.CharField(max_length=500, blank=True)
     nearby = models.CharField(max_length=200, blank=True)
-    price = models.IntegerField()
+    total_amount = models.IntegerField()
+    rate = models.IntegerField() 
+    advance_payment = models.IntegerField()
+    payment_condition = models.IntegerField()
+    expenses = models.IntegerField()
+    # registry_date = 
     sai = models.IntegerField()
     size = models.FloatField()
     size_unit = models.CharField(max_length=5, choices=SIZE_UNITS)

@@ -7,4 +7,4 @@ class PropertyForm(forms.ModelForm):
     # ModelForm expects configurations to be set under the Meta name
     class Meta:
         model = Property # name of the model
-        fields = ['property_name', 'category', 'state', 'city', 'address1', 'address2', 'nearby', 'price', 'sai', 'size', 'size_unit'] # all the fields from the model class that I want in the form
+        fields = ['property_name', 'role', 'state', 'city', 'address1', 'address2', 'nearby', 'total_amount', 'rate', 'advance_payment', 'payment_condition', 'expenses', 'sai', 'size', 'size_unit'] # all the fields from the model class that I want in the form
