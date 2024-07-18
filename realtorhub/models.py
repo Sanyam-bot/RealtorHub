@@ -2,12 +2,6 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-ROLES = (
-    ('buyer', 'BUYER'),
-    ('seller', 'SELLER'),
-    ('dealer', 'DEALER'),
-)
-
 SIZE_UNITS = (
     ('sqrt', 'Square Feet'),
     ('marla', 'Marla'),
@@ -21,7 +15,9 @@ class User(AbstractUser):
 class Property(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_property')
     property_name = models.CharField(max_length=100)
-    role = models.CharField(max_length=6, choices=ROLES)
+    buyer = models.CharField(max_length=50, blank=True)
+    seller = models.CharField(max_length=50, blank=True)
+    dealer = models.CharField(max_length=50, blank=True)
     # address
     state = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
