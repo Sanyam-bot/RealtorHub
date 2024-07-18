@@ -33,7 +33,7 @@ class Property(models.Model):
     advance_payment = models.IntegerField()
     payment_condition = models.IntegerField()
     expenses = models.IntegerField()
-    # registry_date = 
+    registry_date = models.DateField() 
     sai = models.IntegerField()
     size = models.FloatField()
     size_unit = models.CharField(max_length=5, choices=SIZE_UNITS)
