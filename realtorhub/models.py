@@ -27,7 +27,6 @@ class Property(models.Model):
     total_amount = models.IntegerField()
     rate = models.IntegerField() 
     advance_payment = models.IntegerField()
-    payment_condition = models.IntegerField()
     expenses = models.IntegerField()
     registry_date = models.DateField() 
     sai = models.IntegerField()
