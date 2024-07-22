@@ -1,14 +1,47 @@
 {% extends 'realtorhub/layout.html' %}
 
+{% load static %}
+
+{% block head %} 
+<link rel="stylesheet" href="{% static 'realtorhub/add.css' %}">
+{% endblock %}
+
 {% block title %} Add {% endblock %}
 
 {% block body %}
 
-    <h1>ADD</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Register Property</button>
-    </form>
-
+    <div class="property-container">
+        <form method="post" class="property-form">
+            {% csrf_token %}
+            <div class="form-section">
+                <h2>Details</h2>
+                {{ form.property_name.label_tag }} {{ form.property_name }}
+                {{ form.buyer.label_tag }} {{ form.buyer }}
+                {{ form.seller.label_tag }} {{ form.seller }}
+                {{ form.dealer.label_tag }} {{ form.dealer }}
+                {{ form.registry_date.label_tag }} {{ form.registry_date }}
+                {{ form.size.label_tag }} {{ form.size }}
+                {{ form.size_unit.label_tag }} {{ form.size_unit }}
+            </div>
+        
+            <div class="form-section">
+                <h2>Address</h2>
+                {{ form.state.label_tag }} {{ form.state }}
+                {{ form.city.label_tag }} {{ form.city }}
+                {{ form.address1.label_tag }} {{ form.address1 }}
+                {{ form.address2.label_tag }} {{ form.address2 }}
+                {{ form.nearby.label_tag }} {{ form.nearby }}
+            </div>
+        
+            <div class="form-section">
+                <h2>Payment</h2>
+                {{ form.total_amount.label_tag }} {{ form.total_amount }}
+                {{ form.sai.label_tag }} {{ form.sai }}
+                {{ form.advance_payment.label_tag }} {{ form.advance_payment }}
+                {{ form.rate.label_tag }} {{ form.rate }}
+                {{ form.expenses.label_tag }} {{ form.expenses }}
+            </div>
+            <button type="submit">Register Property</button>
+        </form>
+    </div>
 {% endblock %}
