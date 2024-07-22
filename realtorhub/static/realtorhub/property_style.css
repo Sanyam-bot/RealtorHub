@@ -1,0 +1,129 @@
+/* name of the property */
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px; /* Distance from top */
+    font-size: 55px;
+    font-weight: 800;
+}
+
+#registry_date {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 22px; /* Distance from top */
+    font-size: 20px;
+}
+
+#registry_date > b {
+    font-weight: 700;
+    padding-right: 20px;
+}
+
+#property_size {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+#property_size > b {
+    font-weight: 700;
+    padding-right: 20px;
+}
+
+/* buyer dealer seller */
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-top: 20px;
+}
+
+.column {
+    flex: 1;
+    text-align: center;
+}
+
+.column > h2 {
+    text-decoration: underline;
+}
+
+/* Container for payment and address */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Boxes for .payment and .address */
+.payment, .address   {
+    border: 2px solid black;
+    height: 350px;
+    width: 800px;
+    margin: 30px;
+    padding-top: 10px;
+}
+
+/* .payment */
+.payment > h2 {
+    text-align: center;
+    font-weight: 600;
+    text-decoration: underline ;
+    margin-bottom: 25px;
+}
+
+.payment-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.payment-column {
+    flex: 1;
+    text-align: center;
+}
+
+.payment-column h4 {
+    font-weight: 600;
+}
+
+.payment-column p {
+    font-size: 24px;
+    font-weight: 500px;
+    margin: 5px 0;
+}
+/* payment over */
+
+/* address */
+
+.address h2 {
+    text-align: center;
+    font-weight: 600;
+    text-decoration: underline;
+    margin-bottom: 25px;
+}
+
+.address-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 60px;
+}
+
+.address-column {
+    flex: 1;
+    text-align: center;
+}
+
+.address-column h4 {
+    font-weight: 600;
+}
+
+.address-column p {
+    font-size: 24px;
+    font-weight: 500px;
+    margin: 5px 0;
+}
+
+/* address over */

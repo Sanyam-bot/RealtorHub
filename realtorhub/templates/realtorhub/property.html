@@ -1,26 +1,87 @@
 {% extends 'realtorhub/layout.html' %}
 
+{% load static %}
+
+{% block head %} 
+<link rel="stylesheet" href="{% static 'realtorhub/property_style.css' %}">
+{% endblock %}
+
+
 {% block title %} Property {% endblock %}
 
 {% block body %}
 
-    <p>{{property.property_name}}</p>
-    <p>{{property.buyer}}</p>
-    <p>{{property.seller}}</p>
-    <p>{{property.dealer}}</p>
-    <p>{{property.state}}</p>
-    <p>{{property.city}}</p>
-    <p>{{property.address1}}</p>
-    <p>{{property.address2}}</p>
-    <p>{{property.nearby}}</p>
-    <p>{{property.total_amount}}</p>
-    <p>{{property.rate}}</p>
-    <p>{{property.advance_payment}}</p>
-    <p>{{property.payment_condition}}</p>
-    <p>{{property.expenses}}</p>
-    <p>{{property.registry_date}}</p>
-    <p>{{property.sai}}</p>
-    <p>{{property.size}}</p>
-    <p>{{property.size_unit}}</p>
+    <h1>{{property.property_name}}</h1>
 
+    <p id="registry_date"><b>Registry Date:</b>{{property.registry_date}}</p>
+
+    <p id="property_size"><b>Property Size:</b>{{property.size}} {{property.size_unit}}</p>
+
+    <div class="row">
+        <div class="column">
+            <h2>Buyer</h2>
+            <h5>{{property.buyer}}</h5>
+        </div>
+        <div class="column">
+            <h2>Dealer</h2>
+            <h5>{{property.dealer}}</h5>
+        </div>
+        <div class="column">
+            <h2>Seller</h2>
+            <h5>{{property.seller}}</h5>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="payment">
+            <h2>Payment</h2>
+            <div class="payment-row">
+                <div class="payment-column">
+                    <h4>Total Amount: </h4>
+                    <p>{{property.total_amount}}</p>
+                </div>
+                <div class="payment-column">
+                    <h4>Sai: </h4>
+                    <p>{{property.sai}}</p>    
+                </div>                
+            </div>
+            <div class="payment-row">
+                <div class="payment-column">
+                    <h4>Advance: </h4>
+                    <p>{{property.advance_payment}}</p>    
+                </div>
+                <div class="payment-column">
+                    <h4>Rate: </h4>
+                    <p>{{property.rate}}</p>    
+                </div>
+            </div>
+            <div class="payment-row">
+                <div class="payment-column">
+                    <h4>Expenses: </h4>
+                    <p>{{property.expenses}}</p>    
+                </div>
+
+            </div>
+        </div>
+        <div class="address">
+            <h2>Address</h2>
+            <div class="address-row">
+                <div class="address-column">
+                    <h4>State</h4>
+                    <p>{{property.state}}</p>
+                </div>
+                <div class="address-column">
+                    <h4>City</h4>
+                    <p>{{property.city}}</p>
+                </div>
+            </div>
+            <div class="address-row">
+                <div class="address-column">
+                    <p><b>Address 1:</b> {{property.address1}}</p>
+                    <p><b>Address 2:</b> {{property.address2}}</p>
+                    <p><b>Nearby:</b> {{property.nearby}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
