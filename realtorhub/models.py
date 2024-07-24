@@ -30,7 +30,7 @@ class Property(models.Model):
     expenses = models.IntegerField()
     registry_date = models.DateField() 
     sai = models.IntegerField()
-    size = models.FloatField()
+    size = models.CharField(max_length=10)
     size_unit = models.CharField(max_length=5, choices=SIZE_UNITS)
 
     def __str__(self):
