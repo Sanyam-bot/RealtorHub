@@ -22,7 +22,6 @@ class Property(models.Model):
     state = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
     address1 = models.CharField(max_length=500)
-    address2 = models.CharField(max_length=500, blank=True)
     nearby = models.CharField(max_length=200, blank=True)
     total_amount = models.IntegerField()
     rate = models.IntegerField() 
