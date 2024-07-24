@@ -24,7 +24,7 @@ class Property(models.Model):
     address1 = models.CharField(max_length=500)
     nearby = models.CharField(max_length=200, blank=True)
     total_amount = models.IntegerField()
-    rate = models.IntegerField() 
+    rate = models.CharField(max_length=20) 
     expenses = models.IntegerField()
     registry_date = models.DateField() 
     sai = models.IntegerField()
