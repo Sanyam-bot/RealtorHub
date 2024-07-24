@@ -25,7 +25,6 @@ class Property(models.Model):
     nearby = models.CharField(max_length=200, blank=True)
     total_amount = models.IntegerField()
     rate = models.IntegerField() 
-    advance_payment = models.IntegerField()
     expenses = models.IntegerField()
     registry_date = models.DateField() 
     sai = models.IntegerField()
