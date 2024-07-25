@@ -28,14 +28,14 @@ class Property(models.Model):
     city = models.CharField(max_length=100, blank=True)
     address1 = models.CharField(max_length=500, blank=True)
     nearby = models.CharField(max_length=200, blank=True)
-    total_amount = models.IntegerField(blank=True)
-    rate = models.CharField(max_length=20, blank=True) 
-    expenses = models.IntegerField(blank=True)
+    total_amount = models.IntegerField(blank=True, null=True)
+    rate = models.CharField(max_length=20, blank=True, null=True) 
+    expenses = models.IntegerField(blank=True, null=True)
     registry_date = models.DateField() 
-    sai = models.IntegerField()
+    sai = models.IntegerField(blank=True, null=True)
     size = models.CharField(max_length=10)
     size_unit = models.CharField(max_length=5, choices=SIZE_UNITS)
-    payment_condition = models.TextField(max_length=4000, default='')
+    payment_condition = models.TextField(max_length=4000, default='', blank=True)
 
     def __str__(self):
         return self.property_name
