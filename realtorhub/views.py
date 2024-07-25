@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.utils.html import escape, mark_safe
 from .models import User, Property
 from .forms import PropertyForm
 
@@ -28,8 +29,11 @@ def add_property(request):
         form = PropertyForm(request.POST)
 
         if form.is_valid(): # check if it's valid, i check for all hte validators defined in the model class
+            payment_condition = form.cleaned_data['payment_condition']
+            payment_condition = escape(payment_condition).replace('\n', '<br>')
             property_instance = form.save(commit=False) # To create an instnace but not commit, cause user field is still empty
             property_instance.user = request.user
+            property_instance.payment_condition = payment_condition
             property_instance.save()
             return redirect(index)
 
