@@ -45,6 +45,14 @@
     border-radius: 4px;
 }
 
+.form-submit {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+
 button[type="submit"] {
     margin-top: 20px;
     padding: 10px 20px;

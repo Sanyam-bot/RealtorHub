@@ -35,6 +35,7 @@ class Property(models.Model):
     sai = models.IntegerField()
     size = models.CharField(max_length=10)
     size_unit = models.CharField(max_length=5, choices=SIZE_UNITS)
+    payment_condition = models.TextField(max_length=4000, default='')
 
     def __str__(self):
         return self.property_name

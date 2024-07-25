@@ -44,7 +44,13 @@
                 {{ form.rate.label_tag }} {{ form.rate }}
                 {{ form.expenses.label_tag }} {{ form.expenses }}
             </div>
-            <button type="submit">Register Property</button>
+            <div class="form-section">
+                <h2>Payment Condition</h2>
+                {{ form.payment_condition }}
+            </div>
+            <div class="form-submit">
+                <button type="submit">Register Property</button>
+            </div>
         </form>
     </div>
 {% endblock %}
