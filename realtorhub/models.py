@@ -15,13 +15,13 @@ class User(AbstractUser):
 class Property(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_property')
     property_name = models.CharField(max_length=100)
-    buyer_1 = models.CharField(max_length=50, blank=True)
+    buyer_1 = models.CharField(max_length=50, blank=True, verbose_name='Buyers')
     buyer_2 = models.CharField(max_length=50, blank=True)
     buyer_3 = models.CharField(max_length=50, blank=True)
     buyer_4 = models.CharField(max_length=50, blank=True)
     buyer_5 = models.CharField(max_length=50, blank=True)
     seller = models.CharField(max_length=50, blank=True)
-    dealer_1 = models.CharField(max_length=50, blank=True)
+    dealer_1 = models.CharField(max_length=50, blank=True, verbose_name='Dealers')
     dealer_2 = models.CharField(max_length=50, blank=True)
     # address
     state = models.CharField(max_length=100)
