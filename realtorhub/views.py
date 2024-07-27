@@ -48,15 +48,23 @@ def add_property(request):
 
 @login_required(login_url='login')
 def property(request, property_id):
+    # If the user wants to delete the property
+    if request.method == 'POST':
 
-    try:
-        property = Property.objects.get(pk=property_id)
-    except ObjectDoesNotExist:
-        return render(request, 'realtorhub/error.html')
-    
-    return render(request, 'realtorhub/property.html', {
-        'property': property,
-    })
+        # Delete the property instance
+        Property.objects.get(pk=property_id).delete()
+
+        return redirect('index')
+
+    else:   
+        try:
+            property = Property.objects.get(pk=property_id)
+        except ObjectDoesNotExist:
+            return render(request, 'realtorhub/error.html')
+        
+        return render(request, 'realtorhub/property.html', {
+            'property': property,
+        })
 
 
 @login_required(login_url='login')
