@@ -10,7 +10,7 @@
 {% block title %} Property {% endblock %}
 
 {% block body %}
-    <form action="{% url 'edit' property_id=property.pk %}" method="get">
+    <form id="edit-form" action="{% url 'edit' property_id=property.pk %}" method="get">
         {% csrf_token %}
 
 
@@ -90,9 +90,36 @@
         </div>
         <button type="submit">Edit</button>
     </form>
-    <form method="post">
+    <form id="delete-form" method="post">
         {% csrf_token %}
         <button type="submit">Delete</button>
     </form>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+        
+            // Confirm if he user wants to edit or not
+            document.querySelector('#edit-form').onsubmit = function(event) {
+                var edit_result = confirm("Are you sure you want to edit this property?")
+
+                if (!edit_result) {
+                    event.preventDefault()
+                }
+            }
+
+
+            // Confirm if the user wants to delete or not
+            document.querySelector('#delete-form').onsubmit = function(event) {
+                var delete_result = confirm("Are you sure you want to delete the property?");
+
+                if (!delete_result) {
+                    event.preventDefault();
+                }
+            }
+
+        })
+
+    </script>
 
 {% endblock %}
