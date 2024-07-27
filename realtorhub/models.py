@@ -2,11 +2,6 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-SIZE_UNITS = (
-    ('sqrt', 'Square Feet'),
-    ('marla', 'Marla'),
-)
-
 # Create your models here.
 class User(AbstractUser):
     pass
@@ -34,7 +29,7 @@ class Property(models.Model):
     registry_date = models.DateField() 
     sai = models.IntegerField(blank=True, null=True)
     size = models.CharField(max_length=10)
-    size_unit = models.CharField(max_length=5, choices=SIZE_UNITS)
+    marla = models.IntegerField(blank=True, null=True)
     payment_condition = models.TextField(max_length=4000, default='', blank=True)
 
     def __str__(self):

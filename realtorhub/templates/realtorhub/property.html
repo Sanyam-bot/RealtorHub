@@ -24,6 +24,12 @@
 
         <p id="property_size"><b>Property Size:</b>{{property.size}} {{property.size_unit}}</p>
 
+        {% if property.marla %}
+            <p id="marla"><b>Marla:</b>{{property.marla}} marla</p>
+        {% else %}
+            <p id="marla"><b>Marla:</b>{{property.marla}} </p>
+        {% endif %}
+
         <div class="row">
             <div class="column">
                 <h2>Buyers</h2>
