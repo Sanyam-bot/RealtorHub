@@ -5,6 +5,7 @@
 {% block head %} 
 <link rel="stylesheet" href="{% static 'realtorhub/property_style.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 {% endblock %}
 
 
@@ -13,7 +14,6 @@
 {% block body %}
     <form id="edit-form" action="{% url 'edit' property_id=property.pk %}" method="get">
         {% csrf_token %}
-
 
         <h1>
             {{property.property_name}}
@@ -93,10 +93,11 @@
             </div>
         </div>
     </form>
+
     <form id="delete-form" method="post">
         {% csrf_token %}
-        <button type="submit">Delete</button>
-    </form>
+        <button id="delete-button" type="submit"><i class="material-icons">&#xe872;</i></button>
+    </form>        
 
     <script>
 

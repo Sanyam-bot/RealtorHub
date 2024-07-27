@@ -24,6 +24,25 @@ h1 {
     color: black; /* Adjust the color of the pencil icon */
 }
 
+/* delete button  */
+#delete-button {
+    position: absolute;
+    right: 10px;
+    top: 125px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+#delete-button i {
+    font-size: 45px;
+    color: red;
+}
+
 #registry_date {
     display: flex;
     justify-content: center;
