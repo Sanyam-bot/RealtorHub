@@ -8,6 +8,22 @@ h1 {
     font-weight: 800;
 }
 
+/* edit button */
+#edit-button {
+    background: none;
+    border: none;
+    font-size: 0;
+    cursor: pointer;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#edit-button i {
+    font-size: 45px; /* Adjust the size of the pencil icon */
+    color: black; /* Adjust the color of the pencil icon */
+}
+
 #registry_date {
     display: flex;
     justify-content: center;

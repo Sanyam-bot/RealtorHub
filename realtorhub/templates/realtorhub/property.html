@@ -4,6 +4,7 @@
 
 {% block head %} 
 <link rel="stylesheet" href="{% static 'realtorhub/property_style.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock %}
 
 
@@ -14,7 +15,10 @@
         {% csrf_token %}
 
 
-        <h1>{{property.property_name}}</h1>
+        <h1>
+            {{property.property_name}}
+            <button id="edit-button" type="submit"><i class="fa fa-pencil"></i> </button>
+        </h1>
 
         <p id="registry_date"><b>Registry Date:</b>{{property.registry_date}}</p>
 
@@ -88,7 +92,6 @@
                 <p>{{ property.payment_condition|safe }}</p>
             </div>
         </div>
-        <button type="submit">Edit</button>
     </form>
     <form id="delete-form" method="post">
         {% csrf_token %}
