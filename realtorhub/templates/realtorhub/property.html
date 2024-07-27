@@ -14,7 +14,7 @@
 {% block body %}
     <form id="edit-form" action="{% url 'edit' property_id=property.pk %}" method="get">
         {% csrf_token %}
-
+        {% load custom_filters %}
         <h1>
             {{property.property_name}}
             <button id="edit-button" type="submit"><i class="fa fa-pencil"></i> </button>
@@ -56,17 +56,17 @@
                 <div class="payment-row">
                     <div class="payment-column">
                         <h4>Total Amount: </h4>
-                        <p>{{property.total_amount}}</p>
+                        <p>{{property.total_amount|intcomma_in}}</p>
                     </div>
                     <div class="payment-column">
                         <h4>Sai: </h4>
-                        <p>{{property.sai}}</p>    
+                        <p>{{property.sai|intcomma_in}}</p>    
                     </div>                
                 </div>
                 <div class="payment-row">
                     <div class="payment-column">
                         <h4>Expenses: </h4>
-                        <p>{{property.expenses}}</p>    
+                        <p>{{property.expenses|intcomma_in}}</p>    
                     </div>
                     <div class="payment-column">
                         <h4>Rate: </h4>
