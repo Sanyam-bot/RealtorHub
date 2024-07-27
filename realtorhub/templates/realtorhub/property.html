@@ -10,79 +10,85 @@
 {% block title %} Property {% endblock %}
 
 {% block body %}
+    <form action="{% url 'edit' property_id=property.pk %}" method="get">
+        {% csrf_token %}
 
-    <h1>{{property.property_name}}</h1>
 
-    <p id="registry_date"><b>Registry Date:</b>{{property.registry_date}}</p>
+        <h1>{{property.property_name}}</h1>
 
-    <p id="property_size"><b>Property Size:</b>{{property.size}} {{property.size_unit}}</p>
+        <p id="registry_date"><b>Registry Date:</b>{{property.registry_date}}</p>
 
-    <div class="row">
-        <div class="column">
-            <h2>Buyers</h2>
-            <h5>{{property.buyer_1}}</h5>
-            <h5>{{property.buyer_2}}</h5>
-            <h5>{{property.buyer_3}}</h5>
-            <h5>{{property.buyer_4}}</h5>
-            <h5>{{property.buyer_5}}</h5>
-        </div>
-        <div class="column">
-            <h2>Dealer</h2>
-            <h5>{{property.dealer_1}}</h5>
-            <h5>{{property.dealer_2}}</h5>
-        </div>
-        <div class="column">
-            <h2>Seller</h2>
-            <h5>{{property.seller}}</h5>
-        </div>
-    </div>
+        <p id="property_size"><b>Property Size:</b>{{property.size}} {{property.size_unit}}</p>
 
-    <div class="container">
-        <div class="payment">
-            <h2>Payment</h2>
-            <div class="payment-row">
-                <div class="payment-column">
-                    <h4>Total Amount: </h4>
-                    <p>{{property.total_amount}}</p>
-                </div>
-                <div class="payment-column">
-                    <h4>Sai: </h4>
-                    <p>{{property.sai}}</p>    
-                </div>                
+        <div class="row">
+            <div class="column">
+                <h2>Buyers</h2>
+                <h5>{{property.buyer_1}}</h5>
+                <h5>{{property.buyer_2}}</h5>
+                <h5>{{property.buyer_3}}</h5>
+                <h5>{{property.buyer_4}}</h5>
+                <h5>{{property.buyer_5}}</h5>
             </div>
-            <div class="payment-row">
-                <div class="payment-column">
-                    <h4>Expenses: </h4>
-                    <p>{{property.expenses}}</p>    
-                </div>
-                <div class="payment-column">
-                    <h4>Rate: </h4>
-                    <p>{{property.rate}}</p>    
-                </div>
+            <div class="column">
+                <h2>Dealer</h2>
+                <h5>{{property.dealer_1}}</h5>
+                <h5>{{property.dealer_2}}</h5>
+            </div>
+            <div class="column">
+                <h2>Seller</h2>
+                <h5>{{property.seller}}</h5>
             </div>
         </div>
-        <div class="address">
-            <h2>Address</h2>
-            <div class="address-row">
-                <div class="address-column">
-                    <h4>State</h4>
-                    <p>{{property.state}}</p>
+
+        <div class="container">
+            <div class="payment">
+                <h2>Payment</h2>
+                <div class="payment-row">
+                    <div class="payment-column">
+                        <h4>Total Amount: </h4>
+                        <p>{{property.total_amount}}</p>
+                    </div>
+                    <div class="payment-column">
+                        <h4>Sai: </h4>
+                        <p>{{property.sai}}</p>    
+                    </div>                
                 </div>
-                <div class="address-column">
-                    <h4>City</h4>
-                    <p>{{property.city}}</p>
+                <div class="payment-row">
+                    <div class="payment-column">
+                        <h4>Expenses: </h4>
+                        <p>{{property.expenses}}</p>    
+                    </div>
+                    <div class="payment-column">
+                        <h4>Rate: </h4>
+                        <p>{{property.rate}}</p>    
+                    </div>
                 </div>
             </div>
-            <div class="address-row">
-                <div class="address-column">
-                    <p><b>Address 1:</b> {{property.address1}}</p>
-                    <p><b>Nearby:</b> {{property.nearby}}</p>
+            <div class="address">
+                <h2>Address</h2>
+                <div class="address-row">
+                    <div class="address-column">
+                        <h4>State</h4>
+                        <p>{{property.state}}</p>
+                    </div>
+                    <div class="address-column">
+                        <h4>City</h4>
+                        <p>{{property.city}}</p>
+                    </div>
+                </div>
+                <div class="address-row">
+                    <div class="address-column">
+                        <p><b>Address 1:</b> {{property.address1}}</p>
+                        <p><b>Nearby:</b> {{property.nearby}}</p>
+                    </div>
                 </div>
             </div>
+            <div class="payment_condition">
+                <h2>Payment Condition</h2>
+                <p>{{ property.payment_condition|safe }}</p>
+            </div>
         </div>
-        <div class="payment_condition">
-            <h2>Payment Condition</h2>
-            <p>{{ property.payment_condition|safe }}</p>
-        </div>
-    </div>
+        <button type="submit">Edit</button>
+    </form>
+
 {% endblock %}

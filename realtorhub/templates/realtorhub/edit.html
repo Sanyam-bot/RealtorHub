@@ -1,0 +1,55 @@
+{% extends 'realtorhub/layout.html' %}
+
+{% load static %}
+
+{% block head %} 
+    <link rel="stylesheet" href="{% static 'realtorhub/add.css' %}">
+{% endblock %}
+
+{% block title %} Edit {% endblock %}
+
+{% block body %}
+    <div class="property-container">
+        <form method="post" class="property-form">
+            {% csrf_token %}
+            <div class="form-section">
+                <h2>Details</h2>
+                {{ form.property_name.label_tag }} {{ form.property_name }}
+                {{ form.buyer_1.label_tag }} {{ form.buyer_1 }}
+                {{ form.buyer_2 }}
+                {{ form.buyer_3 }}
+                {{ form.buyer_4 }}
+                {{ form.buyer_5 }}
+                {{ form.seller.label_tag }} {{ form.seller }}
+                {{ form.dealer_1.label_tag }} {{ form.dealer_1 }}
+                {{ form.dealer_2 }}
+                {{ form.registry_date.label_tag }} {{ form.registry_date }}
+                {{ form.size.label_tag }} {{ form.size }}
+                {{ form.size_unit.label_tag }} {{ form.size_unit }}
+            </div>
+        
+            <div class="form-section">
+                <h2>Address</h2>
+                {{ form.state.label_tag }} {{ form.state }}
+                {{ form.city.label_tag }} {{ form.city }}
+                {{ form.address1.label_tag }} {{ form.address1 }}
+                {{ form.nearby.label_tag }} {{ form.nearby }}
+            </div>
+        
+            <div class="form-section">
+                <h2>Payment</h2>
+                {{ form.total_amount.label_tag }} {{ form.total_amount }}
+                {{ form.sai.label_tag }} {{ form.sai }}
+                {{ form.rate.label_tag }} {{ form.rate }}
+                {{ form.expenses.label_tag }} {{ form.expenses }}
+            </div>
+            <div class="form-section">
+                <h2>Payment Condition</h2>
+                {{ form.payment_condition }}
+            </div>
+            <div class="form-submit">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

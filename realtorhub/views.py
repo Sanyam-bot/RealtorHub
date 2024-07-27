@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.html import escape, mark_safe
 from .models import User, Property
 from .forms import PropertyForm
@@ -56,6 +56,25 @@ def property(request, property_id):
     
     return render(request, 'realtorhub/property.html', {
         'property': property,
+    })
+
+
+@login_required(login_url='login')
+def edit(request, property_id):
+    property_instance = get_object_or_404(Property, pk=property_id, user=request.user)
+
+    if request.method == 'POST':
+        form = PropertyForm(request.POST, instance=property_instance)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+        
+    else:
+        form = PropertyForm(instance=property_instance)
+
+    return render(request, 'realtorhub/edit.html', {
+        'form': form,
+        'property_instance': property_instance,
     })
 
 
