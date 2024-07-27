@@ -13,7 +13,7 @@ from .forms import PropertyForm
 def index(request):
 
     try:
-        properties = Property.objects.filter(user=request.user)
+        properties = Property.objects.filter(user=request.user).order_by('-pk')
     except ObjectDoesNotExist:
         properties = None
 
