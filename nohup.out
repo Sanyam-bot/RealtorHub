@@ -1,0 +1,12 @@
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Error: That port is already in use.
+[28/Jul/2024 09:01:11] "GET / HTTP/1.1" 302 0
+[28/Jul/2024 09:01:11] "GET /login?next=/ HTTP/1.1" 200 1899
+[28/Jul/2024 09:01:11] "GET /static/realtorhub/bootstrap.min.css HTTP/1.1" 304 0
+[28/Jul/2024 09:01:11] "GET /static/realtorhub/popper.min.js HTTP/1.1" 200 19188
+[28/Jul/2024 09:01:11] "GET /static/realtorhub/bootstrap.min.js HTTP/1.1" 200 48944
+Watching for file changes with StatReloader
+Error: That port is already in use.
+[28/Jul/2024 09:01:32] "GET / HTTP/1.1" 302 0
+[28/Jul/2024 09:01:32] "GET /login?next=/ HTTP/1.1" 200 1899

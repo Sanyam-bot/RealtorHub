@@ -1,0 +1,15 @@
+{
+  "name": "realtorspace",
+  "version": "1.0.0",
+  "description": "Launch a Django web app with electron framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "realtorhub": "electron ."
+  },
+  "author": "Sanyam",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^31.3.0"
+  }
+}
