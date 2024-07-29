@@ -75,7 +75,7 @@ def edit(request, property_id):
         form = PropertyForm(request.POST, instance=property_instance)
         if form.is_valid():
             form.save()
-            return redirect('index')
+            return redirect('property', property_id=property_id)
         
     else:
         form = PropertyForm(instance=property_instance)
