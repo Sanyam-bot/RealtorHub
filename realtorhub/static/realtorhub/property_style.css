@@ -56,14 +56,14 @@ h1 {
     padding-right: 20px;
 }
 
-#property_size {
+#property_size, #property_type {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 20px;
 }
 
-#property_size > b {
+#property_size > b, #property_type > b {
     font-weight: 700;
     padding-right: 20px;
 }

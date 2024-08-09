@@ -2,6 +2,14 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
+PROPERTY_CHOICES = (
+    ('agriculture', 'Agriculture Land'),
+    ('house', 'House'),
+    ('flat', 'Flat'),
+    ('shop', 'Shop'),    
+)
+
+
 # Create your models here.
 class User(AbstractUser):
     pass
@@ -10,6 +18,7 @@ class User(AbstractUser):
 class Property(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_property')
     property_name = models.CharField(max_length=100)
+    type = models.CharField(max_length=20, choices=PROPERTY_CHOICES, blank=True)
     buyer_1 = models.CharField(max_length=50, blank=True, verbose_name='Buyers')
     buyer_2 = models.CharField(max_length=50, blank=True)
     buyer_3 = models.CharField(max_length=50, blank=True)
