@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from django.utils.html import escape, mark_safe
 from .models import User, Property
 from .forms import PropertyForm
@@ -139,3 +139,27 @@ def register(request):
 
     else:
         return render(request, 'realtorhub/register.html')
+    
+
+def search(request):
+    # Get the name user searched for
+    query = request.POST['name']
+
+    properties = get_list_or_404(Property.objects.all()) # Getting all the properties 
+
+    results = [] # Empty list to store all the matched properties
+
+    # To find the properties which matches with the name user searched for
+    for property in properties: # Looping over all the properties
+        for index, character in enumerate(query): # Looping over every character of the query
+            if character != property.property_name[index]:
+                break
+        else:
+            # It means that the query matches with the property_name
+            results.append(property) # The matched property_name will be added to the results list
+    
+    results.reverse() # Reverse the results, so the result which is most similar comes first
+
+    return render(request, 'realtorhub/search.html', {
+        'properties': results,
+    })
