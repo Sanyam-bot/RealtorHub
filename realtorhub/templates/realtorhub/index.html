@@ -4,17 +4,17 @@
 
 {% block body %}
 
+    <form action="{% url 'search' %}" method="post" >
+        {% csrf_token %}
+        <input autofocus placeholder="Search" type="text" name="name" required>
+        <input type="submit" value="Search">
+    </form>    
+
     {% if properties is None %}
 
         <h1 style="position: absolute; left: 50%; top: 50%;">EMPTY</h1>
 
     {% else %}
-
-    <form action="{% url 'search' %}" method="post" >
-        {% csrf_token %}
-        <input autofocus placeholder="Search" type="text" name="name" required>
-        <input type="submit" value="Search">
-    </form>
 
         <!-- bootstrap table -->
         <table class="table table-bordered custom-table-bordered">
