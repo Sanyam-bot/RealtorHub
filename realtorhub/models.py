@@ -35,9 +35,9 @@ class Property(models.Model):
     total_amount = models.IntegerField(blank=True, null=True)
     rate = models.CharField(max_length=20, blank=True, null=True) 
     expenses = models.IntegerField(blank=True, null=True)
-    registry_date = models.DateField() 
+    registry_date = models.DateField(blank=True, null=True) 
     sai = models.IntegerField(blank=True, null=True)
-    size = models.CharField(max_length=10)
+    size = models.CharField(max_length=10, blank=True)
     marla = models.IntegerField(blank=True, null=True)
     payment_condition = models.TextField(max_length=4000, default='', blank=True)
 
