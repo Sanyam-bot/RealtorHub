@@ -10,6 +10,19 @@
         <input type="submit" value="Search">
     </form>    
 
+    <form id="sort_form" action="{% url 'index' %}" method="post">
+        {% csrf_token %}
+        <label for="sort_by">Sort By</label>
+        <select name="sort_by" id="sort_by">
+            <option>--Choose a option--</option>
+            <option value="name_asc">Property Name (A to Z)</option>
+            <option value="name_desc">Property Name (Z to A)</option>
+            <option value="date_asc">Nearest Registry Date</option>
+            <option value="date_desc">Farthest Registry Date</option>
+            <option value="time">Time Created</option>
+        </select>
+    </form>
+    
     {% if properties is None %}
 
         <h1 style="position: absolute; left: 50%; top: 50%;">EMPTY</h1>
@@ -40,9 +53,20 @@
 
                 {% endfor %}
             </tbody>
-          </table>
+        </table>
    
-
     {% endif %}
     
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // Whenever the user changes the sort_by option
+            document.querySelector('#sort_by').onchange = () => {
+                document.querySelector('#sort_form').submit()
+            }
+        })
+
+    </script>
+
 {% endblock %}

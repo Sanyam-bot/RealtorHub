@@ -12,10 +12,41 @@ from .forms import PropertyForm
 @login_required(login_url='login')
 def index(request):
 
-    try:
-        properties = Property.objects.filter(user=request.user).order_by('-pk')
-    except ObjectDoesNotExist:
-        properties = None
+    if request.method == 'GET':
+        try:
+            properties = Property.objects.filter(user=request.user).order_by('-pk')
+        except ObjectDoesNotExist:
+            properties = None
+
+    elif request.method == 'POST':
+        # To know how to sort
+        how = request.POST['sort_by']
+        
+        if how == 'time':
+            try:
+                properties = Property.objects.filter(user=request.user).order_by('-pk')
+            except ObjectDoesNotExist:
+                properties = None
+        elif how == 'name_asc':
+            try:
+                properties = Property.objects.filter(user=request.user).order_by('property_name')
+            except ObjectDoesNotExist:
+                properties = None 
+        elif how == 'name_desc':
+            try:
+                properties = Property.objects.filter(user=request.user).order_by('-property_name')
+            except ObjectDoesNotExist:
+                properties = None 
+        elif how == 'date_asc':
+            try:
+                properties = Property.objects.filter(user=request.user).order_by('registry_date')
+            except ObjectDoesNotExist:
+                properties = None 
+        elif how == 'date_desc':
+            try:
+                properties = Property.objects.filter(user=request.user).order_by('-registry_date')
+            except ObjectDoesNotExist:
+                properties = None 
 
     return render(request, 'realtorhub/index.html', {
         'properties': properties,
