@@ -174,7 +174,9 @@ def register(request):
 
 def search(request):
     # Get the name user searched for
-    query = request.POST['name'].strip()
+    query = request.POST['name'].strip() # It just strips the leading and trailing whitespace    
+
+    query = query.title() # Titlecases the query
 
     properties = get_list_or_404(Property.objects.all()) # Getting all the properties 
 
