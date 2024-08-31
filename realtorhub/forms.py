@@ -12,3 +12,7 @@ class PropertyForm(forms.ModelForm):
             'registry_date': forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}),
             'size': forms.TextInput(attrs={'placeholder': 'Length x Breadth'})
         }
+
+    def clean_property_name(self):
+            data = self.cleaned_data['property_name']
+            return data.title()
