@@ -1,13 +1,34 @@
 # RealtorHub
+
 ### Description: 
+
 It is a Django desktop application using Electron framework, It's general purpose is to store information about real estate deals, it is made keeping in mind that It can be used by the seller, buyer and the realtor, It basically stores Property name, type of the property, buyers, seller, dealer, Registry date, size, marla, state, city, address1, nearby, total amount, sai, rate, expenses, and payment condition.  
 
 ### Distinctiveness
-The reason for it being distinct is that there is no website that I have seen which provides a way to store real estate properties for personal use, and most important one it's not just a Django application, it's desktop app made with Electron framework. If I go deep down to specific features which are distinct to CS50 web's other project, being able to select a date with a calendar for registry date, the templatetags folder provides a way to represent integer into comma-separated way according to Indian Numerical system, when the user tries to edit or delete the entry It asks for confirmation with the help of javscript, and when It comes distinctness in design the add container has a shadow, which makes it look raised, and it's same for the payment, address and payment condition. 
+
+The reason for it being distinct is that there is no website that I have seen which provides a way to store real estate properties for personal use. If I go deep down to specific features which are distinct to CS50 web's other project, being able to select a date with a calendar for registry date, the templatetags folder provides a way to represent integer into comma-separated way according to Indian Numerical system, when the user tries to edit or delete the entry It asks for confirmation with the help of javscript, and when It comes distinctness in design the add container has a shadow, which makes it look raised, and it's same for the payment, address and payment condition. 
+
+It's not just a Django application, but also a Desktop application made with the help of Electron Framework, The reason for it also being a desktop app is that the fact I am planning to distribute this application one day after further development. It has both .bat, and .sh, that means It can work with both windows and linux, to make this possible I got to work with new technologies like node.js, npm, and electron. 
+
+Within the templatetags, there is a folder which has a custom_filters.py file, it allows for the integers to be shown comma separated according to Indian decimal system.
 
 
 ### Complexity
-I used two Django models User and Property, the property model has all the fields about the property, specifically the "type" field in property field uses choices named PROPERTY_CHOICES, which are defined outside the property class. The property page allows to edit the listing, the edit page provides the same page as add, but the fields are already filled with the data of the listing, which it gets from the sqlite table, Now the user has the ability to chnage or add new information to the page and submit it, which will update the data in the sqlite table. Whenever the code searches for a possible row in a possible table, it makes sure the if the result doesn't exist, there is a error page explaining that, rather than the site just saying error. THe payment condition has a feature, so whenever the user clicks enter rather than saving the next line after a space, It saves it in the next line.
+
+#### Hardware Acceleration
+Making a electron application for the first time served me with a lot errors, and also I made it for both Windows 11 and ubunutu, so the installion process is pretty different, which caused a trouble in managing dependencies. Nothing was more complex than understanding why I wasn't able to write in Django forms in the desktop app, when it was working fine as a website. The reason for this was my outdated GPU, which wasn't compatible withe Electron framework, so I disabled the hardware acceleration, which led to CPU taking over the graphics task, and solving this error.
+
+#### Custom_filters.py
+It shows the decimals comma-separated acc. to Indian decima system, firstly it converts the int into a string, then if the length of the string is less than or equal to 3, there will be no commas, but if it is more than 3, what it will do is separate the last three from the reamaining, and now it will iterate over the remaining and adding a comma after every two characters, and at last it will join the reamining and last three character with a comma in between.
+
+#### add_property in views.py
+When the user submits the add form to save the property listing, before simply adding the data into the SQLite database, it escapes the paytment condition field's '\n' to '<br>', so when the users clicks enter, the text afterwards starts from next line. Also, after that the form is saved without commiting because the user field is yet to be filed, the user would be the user who requested this to happen, and then finaaly the form is saved.
+
+#### edit 
+This feature allows to edit the property listing. The edit function first gets the property instance, then if the request was GET request,  it fills all the fields of the PropertyForm with the saved data. Now the user have form fields with pre filled data and a option to change anything, once it's submittted, the form is checked if it's valid or not, if it is saved to the database, otherwise the data will remain the same. ALso, when the user clicks on the edit button, it asks for the confirmation with the help of javascript. 
+
+#### Search
+This feature allows to search for the property listings, by searching for their property name. The search function iterates over Property instances, and then it iterates over the query searched by the user, then it checks if the characters of the query aren't equal to property_name's equivalent index, the loop will break, which would mean there aren't similar results to the query, but If the loop finishes without breaking, it will save the that property instance to a empty list.
 
 
 ### Models.py
@@ -21,7 +42,7 @@ It consists of a basic authentication process, other then that it has function w
 I made a PropertyForm which extends the forms.ModelForm, and in the class meta all the fields are defined, and in widgets format of the registry-date is kept default
 
 ### Index.js
-I basically launches the Django we application as a desktop app using Electron on the localhost
+I basically launches the Django application as a desktop app using Electron on the localhost
 
 ### Realtor.bat, Realtor.sh
 These are the launchers for both windows and linux respectively
