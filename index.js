@@ -1,6 +1,8 @@
 
 const {app, BrowserWindow} = require("electron");
 
+app.disableHardwareAcceleration();  // Disable hardware acceleration
+
 function ElectronMainMethod() {
     const launchWindow = new BrowserWindow({
         title: "Tipper",
