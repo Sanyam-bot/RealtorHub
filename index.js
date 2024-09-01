@@ -1,16 +1,16 @@
 
 const {app, BrowserWindow} = require("electron");
 
-function ElectronMainMethod(){
+function ElectronMainMethod() {
     const launchWindow = new BrowserWindow({
-        title: "realtorhub",
-        width: 900,
-        height: 800
+        title: "Tipper",
+        width: 2000,
+        height: 1000
     });
 
-    const appURL = "http://localhost:8000";
+    const appURL = "http://localhost:8000"
 
     launchWindow.loadURL(appURL);
-}// end main()
+}
 
 app.whenReady().then(ElectronMainMethod)

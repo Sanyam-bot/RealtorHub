@@ -1,12 +1,46 @@
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 Error: That port is already in use.
-[28/Jul/2024 09:01:11] "GET / HTTP/1.1" 302 0
-[28/Jul/2024 09:01:11] "GET /login?next=/ HTTP/1.1" 200 1899
-[28/Jul/2024 09:01:11] "GET /static/realtorhub/bootstrap.min.css HTTP/1.1" 304 0
-[28/Jul/2024 09:01:11] "GET /static/realtorhub/popper.min.js HTTP/1.1" 200 19188
-[28/Jul/2024 09:01:11] "GET /static/realtorhub/bootstrap.min.js HTTP/1.1" 200 48944
+Watching for file changes with StatReloader
+[01/Sep/2024 09:40:31] "GET / HTTP/1.1" 200 4264
 Watching for file changes with StatReloader
 Error: That port is already in use.
-[28/Jul/2024 09:01:32] "GET / HTTP/1.1" 302 0
-[28/Jul/2024 09:01:32] "GET /login?next=/ HTTP/1.1" 200 1899
+[01/Sep/2024 09:40:39] "GET / HTTP/1.1" 200 4264
+Watching for file changes with StatReloader
+Error: That port is already in use.
+[01/Sep/2024 09:40:46] "GET / HTTP/1.1" 200 4264
+Watching for file changes with StatReloader
+Error: That port is already in use.
+[01/Sep/2024 09:42:30] "GET / HTTP/1.1" 200 4264
+[01/Sep/2024 09:42:34] "GET /property/4 HTTP/1.1" 200 5477
+[01/Sep/2024 09:42:34] "GET /static/realtorhub/property_style.css HTTP/1.1" 200 3392
+[01/Sep/2024 09:42:37] "GET /edit/4?csrfmiddlewaretoken=1inKQfhcKxKIT9kax9votD4Iqym3jtpvoJWUyNmGYNOwykjL72xVFMLmvZfWKinh HTTP/1.1" 200 4818
+[01/Sep/2024 09:42:37] "GET /static/realtorhub/add.css HTTP/1.1" 200 1169
+[01/Sep/2024 09:42:45] "POST /edit/4?csrfmiddlewaretoken=1inKQfhcKxKIT9kax9votD4Iqym3jtpvoJWUyNmGYNOwykjL72xVFMLmvZfWKinh HTTP/1.1" 302 0
+[01/Sep/2024 09:42:45] "GET /property/4 HTTP/1.1" 200 5488
+[01/Sep/2024 09:42:50] "GET /add HTTP/1.1" 200 4796
+Watching for file changes with StatReloader
+Error: That port is already in use.
+[01/Sep/2024 09:43:08] "GET / HTTP/1.1" 200 4264
+[01/Sep/2024 09:43:12] "GET /property/4 HTTP/1.1" 200 5488
+[01/Sep/2024 09:43:16] "GET /edit/4?csrfmiddlewaretoken=UMezcVZUVog4qsBWhM5sMVPgNXgehtW4hdNJUt4o9EkS5DAxRF7ZY4wUSo97IiUQ HTTP/1.1" 200 4818
+Watching for file changes with StatReloader
+Error: That port is already in use.
+[01/Sep/2024 09:50:53] "GET / HTTP/1.1" 200 4264
+[01/Sep/2024 09:50:55] "GET /property/4 HTTP/1.1" 200 5491
+[01/Sep/2024 09:50:58] "GET /edit/4?csrfmiddlewaretoken=Kp5u69S91XotjgK8rRizfNpDutQwMpNQ7QEEOHXDfdshYrJJ1Kk6rW6hzUJpdeLC HTTP/1.1" 200 4830
+Watching for file changes with StatReloader
+Error: That port is already in use.
+[01/Sep/2024 09:53:02] "GET / HTTP/1.1" 200 4264
+[01/Sep/2024 09:53:05] "GET / HTTP/1.1" 200 4264
+[01/Sep/2024 09:53:06] "GET /add HTTP/1.1" 200 4796
+[01/Sep/2024 09:53:09] "GET / HTTP/1.1" 200 4264
+[01/Sep/2024 09:53:11] "GET /property/3 HTTP/1.1" 200 5480
+[01/Sep/2024 09:53:13] "GET /edit/3?csrfmiddlewaretoken=XRl8G16EV6XPAA0YQZqbaYwySOPXDTawkiUiozb89m1DfLZzqSsIm7dcXfIQ4I8i HTTP/1.1" 200 4820
+[01/Sep/2024 09:53:17] "POST /edit/3?csrfmiddlewaretoken=XRl8G16EV6XPAA0YQZqbaYwySOPXDTawkiUiozb89m1DfLZzqSsIm7dcXfIQ4I8i HTTP/1.1" 302 0
+[01/Sep/2024 09:53:17] "GET /property/3 HTTP/1.1" 200 5496
+[01/Sep/2024 09:53:19] "GET / HTTP/1.1" 200 4272
+[01/Sep/2024 09:53:23] "POST / HTTP/1.1" 200 4272
+[01/Sep/2024 09:53:24] "POST / HTTP/1.1" 200 4272
+[01/Sep/2024 09:53:28] "POST /search HTTP/1.1" 200 2383
+[01/Sep/2024 09:53:30] "GET / HTTP/1.1" 200 4272
