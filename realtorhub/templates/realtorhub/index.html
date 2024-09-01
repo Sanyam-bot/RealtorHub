@@ -3,7 +3,7 @@
 {% block title %} Home {% endblock %}
 
 {% block body %}
-
+{% load custom_filters %}
     <form action="{% url 'search' %}" method="post" >
         {% csrf_token %}
         <input autofocus placeholder="Search" type="text" name="name" required>
@@ -47,8 +47,8 @@
                         <th scope="row">{{ forloop.counter }}</th>
                         <td><a href="{% url 'property' property_id=property.pk %}">{{ property.property_name }}</a></td>
                         <td>{{ property.city }}</td>
-                        <td>{{ property.total_amount }}</td>
-                        <td>{{ property.sai }}</td>
+                        <td>{{ property.total_amount|intcomma_in }}</td>
+                        <td>{{ property.sai|intcomma_in }}</td>
                     </tr>
 
                 {% endfor %}
