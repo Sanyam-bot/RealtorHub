@@ -1,54 +1,193 @@
 # RealtorHub
 
-### Description: 
+A Django + Electron desktop application for managing real estate deals. RealtorHub lets realtors, buyers, and sellers store and organise property listings locally — no internet connection required.
 
-It is a Django desktop application using Electron framework, It's general purpose is to store information about real estate deals, it is made keeping in mind that It can be used by the seller, buyer and the realtor, It basically stores Property name, type of the property, buyers, seller, dealer, Registry date, size, marla, state, city, address1, nearby, total amount, sai, rate, expenses, and payment condition.  
+---
 
-### Distinctiveness
+## Table of Contents
 
-The reason for it being distinct is that there is no website that I have seen which provides a way to store real estate properties for personal use. If I go deep down to specific features which are distinct to CS50 web's other project, being able to select a date with a calendar for registry date, the templatetags folder provides a way to represent integer into comma-separated way according to Indian Numerical system, when the user tries to edit or delete the entry It asks for confirmation with the help of javscript, and when It comes distinctness in design the add container has a shadow, which makes it look raised, and it's same for the payment, address and payment condition. 
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Prerequisites](#prerequisites)
+- [Installation & Setup](#installation--setup)
+- [Running the Application](#running-the-application)
+- [URL Routes](#url-routes)
+- [Data Model](#data-model)
+- [Notable Implementation Details](#notable-implementation-details)
 
-It's not just a Django application, but also a Desktop application made with the help of Electron Framework, The reason for it also being a desktop app is that the fact I am planning to distribute this application one day after further development. It has both .bat, and .sh, that means It can work with both windows and linux, to make this possible I got to work with new technologies like node.js, npm, and electron. 
+---
 
-Within the templatetags, there is a folder which has a custom_filters.py file, it allows for the integers to be shown comma separated according to Indian decimal system.
+## Features
 
+- **Add property listings** — record Agriculture Land, House, Flat, or Shop entries with full details
+- **Track parties** — up to 5 buyers, 1 seller, and 2 dealers per listing
+- **Property details** — name, type, size (length × breadth), marla, state, city, address, and nearby landmarks
+- **Financial details** — total amount, rate, SAI, and expenses displayed in Indian number format (e.g. ₹12,34,567)
+- **Registry date picker** — calendar widget for selecting the registration date
+- **Multi-line payment conditions** — newlines are preserved when viewing a listing
+- **Sort listings** — by most recent, name A–Z / Z–A, or registry date ascending / descending
+- **Search** — find listings by property name (prefix match, case-insensitive)
+- **Edit & Delete** — both actions require JavaScript confirmation before proceeding
+- **User authentication** — register, login, and logout; each user sees only their own listings
+- **Offline-ready** — Bootstrap assets are bundled locally
+- **Desktop app** — wraps the Django server in an Electron window (Windows & Linux)
 
-### Complexity
+---
 
-#### Hardware Acceleration
-Making a electron application for the first time served me with a lot errors, and also I made it for both Windows 11 and ubunutu, so the installion process is pretty different, which caused a trouble in managing dependencies. Nothing was more complex than understanding why I wasn't able to write in Django forms in the desktop app, when it was working fine as a website. The reason for this was my outdated GPU, which wasn't compatible withe Electron framework, so I disabled the hardware acceleration, which led to CPU taking over the graphics task, and solving this error.
+## Tech Stack
 
-#### Custom_filters.py
-It shows the decimals comma-separated acc. to Indian decima system, firstly it converts the int into a string, then if the length of the string is less than or equal to 3, there will be no commas, but if it is more than 3, what it will do is separate the last three from the reamaining, and now it will iterate over the remaining and adding a comma after every two characters, and at last it will join the reamining and last three character with a comma in between.
+| Layer | Technology |
+|---|---|
+| Backend | Python 3, Django 5.0.6 |
+| Frontend | HTML, Bootstrap (local), JavaScript |
+| Desktop shell | Electron 32 (via Node.js / npm) |
+| Database | SQLite (default Django DB) |
 
-#### add_property in views.py
-When the user submits the add form to save the property listing, before simply adding the data into the SQLite database, it escapes the paytment condition field's '\n' to '<br>', so when the users clicks enter, the text afterwards starts from next line. Also, after that the form is saved without commiting because the user field is yet to be filed, the user would be the user who requested this to happen, and then finaaly the form is saved.
+---
 
-#### edit 
-This feature allows to edit the property listing. The edit function first gets the property instance, then if the request was GET request,  it fills all the fields of the PropertyForm with the saved data. Now the user have form fields with pre filled data and a option to change anything, once it's submittted, the form is checked if it's valid or not, if it is saved to the database, otherwise the data will remain the same. ALso, when the user clicks on the edit button, it asks for the confirmation with the help of javascript. 
+## Project Structure
 
-#### Search
-This feature allows to search for the property listings, by searching for their property name. The search function iterates over Property instances, and then it iterates over the query searched by the user, then it checks if the characters of the query aren't equal to property_name's equivalent index, the loop will break, which would mean there aren't similar results to the query, but If the loop finishes without breaking, it will save the that property instance to a empty list.
+```
+RealtorHub/
+├── manage.py               # Django management script
+├── requirements.txt        # Python dependencies (Django)
+├── package.json            # Node.js dependencies (Electron)
+├── index.js                # Electron main process — loads localhost:8000
+├── realtor.bat             # Windows launcher
+├── realtor.sh              # Linux/macOS launcher
+├── realtorspace/           # Django project settings
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py / asgi.py
+└── realtorhub/             # Main Django application
+    ├── models.py           # User and Property models
+    ├── views.py            # All view functions
+    ├── forms.py            # PropertyForm (ModelForm)
+    ├── urls.py             # URL patterns
+    ├── templatetags/
+    │   └── custom_filters.py   # intcomma_in — Indian number formatting
+    ├── templates/realtorhub/   # HTML templates
+    └── static/                 # CSS, JS, Bootstrap assets
+```
 
+---
 
-### Models.py
-It includes two model classes, User class which extends the default 'AbstractUser', without adding any additional fields and Property class which has several fields to store information about the property, user, property_name, buyer_1, buyer_2, buyer_3, buyer_4, buyer_5, seller, dealer_1, dealer_2, state, city, address1, nearby, total_amount, rate, expenses, registry_date, sai, size, marla, and payment_condition, basically it stored all the information, the reason I choose the a single class is that a single user is going to use it, so I didn't matter to store the data efficiently, also having just one class made it easier to use
+## Prerequisites
 
+| Requirement | Version |
+|---|---|
+| Python | 3.10 or later |
+| Django | 5.0.6 (installed via pip) |
+| Node.js & npm | LTS recommended |
+| Electron | installed automatically via npm |
 
-### Views.py
-It consists of a basic authentication process, other then that it has function which generates a Django form for the User to fill, which is further stored in the database. The index function genreates a page which showcases all the real estate lisitngs in a table which the user stored, and it provides a link to every listing, which the user can further go into to see the all information about the lisiting, actually that link takes to another url, whose function is defined in the views.py. When on the property page the useer gets option to either edit the lisitng or delete it, both of which are handled by different functions in the views.py, which are edit(request, property_id) and property(request, property_id) respectively. The edit and delete both ask for confirmation using javascript.
+---
 
-### Forms.py
-I made a PropertyForm which extends the forms.ModelForm, and in the class meta all the fields are defined, and in widgets format of the registry-date is kept default
+## Installation & Setup
 
-### Index.js
-I basically launches the Django application as a desktop app using Electron on the localhost
+1. **Clone the repository**
 
-### Realtor.bat, Realtor.sh
-These are the launchers for both windows and linux respectively
+   ```bash
+   git clone https://github.com/Sanyam-bot/RealtorHub.git
+   cd RealtorHub
+   ```
 
-### Design 
-I used bootstrap for the navbar, whose files are stored locally, so It's accesible offline. The Add Page is divided into four sections, the sections are in a container which is given a shadow so it looks raised, also the color is off white, every section has a dashed border, and the text is aligned to the left. The property page has a basic design it just shows the the data stored in the database about that particular property listing.
+2. **Install Python dependencies**
 
-### How to run the application
-In order to run the application the user needs to have python, node, Django, and electron installed. After everything is installed the user should run python manage.py migrate, after that it's all set, by launching either of realtor.bat or realtor.sh based on the OS, it will run the application as a desktop app, If the user wants to just use it as a web application, there is no need to install node and electron, and the application will be able to start by runing python manage.py migrate and then python manage.py runserver.
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Install Node.js dependencies** *(only needed for the desktop app)*
+
+   ```bash
+   npm install
+   ```
+
+4. **Apply database migrations**
+
+   ```bash
+   python manage.py migrate
+   ```
+
+---
+
+## Running the Application
+
+### As a Desktop App (Electron)
+
+The launcher scripts start the Django development server and then open Electron.
+
+**Windows:**
+```bat
+realtor.bat
+```
+
+**Linux / macOS:**
+```bash
+bash realtor.sh
+```
+
+### As a Web App Only
+
+No Node.js or Electron required.
+
+```bash
+python manage.py runserver
+```
+
+Then open [http://localhost:8000](http://localhost:8000) in your browser.
+
+---
+
+## URL Routes
+
+| URL | View | Description |
+|---|---|---|
+| `/` | `index` | Dashboard — list all property listings |
+| `/add` | `add_property` | Add a new property listing |
+| `/property/<id>` | `property` | View details of a listing; POST to delete it |
+| `/edit/<id>` | `edit` | Edit an existing listing |
+| `/search` | `search` | Search listings by property name |
+| `/login` | `login_view` | Login page |
+| `/logout` | `logout_view` | Logout and redirect to index |
+| `/register` | `register` | Register a new account |
+
+---
+
+## Data Model
+
+### `Property`
+
+| Field | Type | Notes |
+|---|---|---|
+| `user` | ForeignKey | Owner of the listing |
+| `property_name` | CharField | Auto title-cased on save |
+| `type` | CharField | `agriculture`, `house`, `flat`, or `shop` |
+| `buyer_1` … `buyer_5` | CharField | Up to five buyers |
+| `seller` | CharField | |
+| `dealer_1`, `dealer_2` | CharField | Up to two dealers |
+| `state`, `city`, `address1`, `nearby` | CharField | Location fields |
+| `total_amount`, `expenses`, `sai` | IntegerField | Shown in Indian number format |
+| `rate` | CharField | Rate per unit |
+| `size` | CharField | Format: `Length x Breadth` |
+| `marla` | IntegerField | Area in marla |
+| `registry_date` | DateField | Chosen via calendar widget |
+| `payment_condition` | TextField | Newlines preserved as `<br>` in detail view |
+
+---
+
+## Notable Implementation Details
+
+### Indian Number Format (`templatetags/custom_filters.py`)
+The custom `intcomma_in` template filter displays integers in the Indian numeral system (e.g. `1234567` → `12,34,567`). Numbers with three or fewer digits are returned as-is; for longer numbers the last three digits are separated first, then remaining digits are grouped in pairs from right to left.
+
+### Hardware Acceleration Disabled (`index.js`)
+`app.disableHardwareAcceleration()` is called before the Electron window is created. This ensures compatibility with older or integrated GPUs that do not fully support Electron's GPU compositing.
+
+### Payment Condition Newline Handling (`views.py` — `add_property`)
+Before saving a new listing, newline characters (`\n`) in the `payment_condition` field are replaced with `<br>` so that line breaks entered by the user are preserved when the listing is displayed in the browser.
+
+### Search Algorithm (`views.py` — `search`)
+The search performs a case-insensitive prefix match: the query is title-cased and compared character-by-character against each `property_name`. A listing is included in the results only if every character of the query matches the corresponding position in the property name.
